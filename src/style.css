@@ -7,17 +7,28 @@
     text-align: center;
 }
 
-.books{
+.Dailyuser{
     display: flex;
     gap: 10px;
 }
 
-.book{
-    flex: 1;
+.daily{
+    background-color: white;
+    width: 20em;
+    height: 25em;
+    position: relative;
+    border-radius: 1em;
+    box-shadow: 0 0.188em 1.550em rgb(61, 138, 247);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  
+    /*flex: 1;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    align-items: center;
+    align-items: center;*/
 }
 
 img{
@@ -45,22 +56,42 @@ img{
 }
 
 .form{
+    background-color: white;
+    width: 20em;
+    height: 28em;
+    position: relative;
+    border-radius: 1em;
+    box-shadow: 0 0.188em 1.550em rgb(61, 138, 247);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    justify-content: space-around;
+
+    /*display: flex;
+    flex-direction: column;
+    gap: 20px;*/
 }
 
 input{
     width: 250px;
     padding: 10px;
-    border: 1px solid gray;    
+    border: 1px solid gray;
+    border-radius: 0.25em;
 }
+input:focus{
+    outline-color: rgb(61, 138, 247);
+}
+
 
 .formButton{
     border: none;
     padding: 10px;
-    background-color: rgb(244, 142, 74);
+    background-color: rgb(61, 138, 247);
     color: white;
     font-weight: bold;
     cursor: pointer;
+    border-radius: 0.25em;
+}
+title{
+    color:  rgb(61, 138, 247);
 }

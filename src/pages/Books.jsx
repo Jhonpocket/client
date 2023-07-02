@@ -2,24 +2,24 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-const Books = () => {
-    const [books, setBooks] = useState()
+const Dailyuser = () => {
+    const [Dailyuser, setDailyuser] = useState()
 
     useEffect(()=>{
-        const FetchAllBooks = async ()=>{
+        const FetchAllDailyuser = async ()=>{
             try {
-                const res = await axios.get("http://localhost:8800/books")
-                setBooks(res.data)
+                const res = await axios.get("http://localhost:8800/daily")
+                setDailyuser(res.data)
             } catch (err) {
                 console.log(err)
             }
         }
-        FetchAllBooks()
+        FetchAllDailyuser()
     },[])
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete("http://localhost:8800/books/"+id)
+            await axios.delete("http://localhost:8800/daily/"+id)
             window.location.reload()
         } catch (err) {
             console.log(err)
@@ -28,22 +28,24 @@ const Books = () => {
 
     return (
         <div>
-            <h1>Lama Book Shop</h1>
-            <div className="books">
-                {books && books.map((book) => (
-                    <div className="book" key={book.id}>
-                        {book.cover && <img src={book.cover} alt="" />}
-                        <h2>{book.title}</h2>
-                        <p>{book.desc}</p>
-                        <span>{book.price}</span>
-                        <button className='delete' onClick={()=>handleDelete(book.id)}>Delete</button>
-                        <button className='update'><Link to ={`/update/${book.id}`}>Update</Link></button>
+            <h1 className='title'>Daily App</h1>
+            <h2>Informacion del usuario</h2>
+            <div className="Dailyuser">
+                {Dailyuser && Dailyuser.map((daily) => (
+                    <div className="daily" key={daily.id}>
+                        {daily.cover && <img src={daily.cover} alt="" />}
+                        <h3 className='title'>Nombre: </h3><p>{daily.nombre}</p>
+                        <h3 className='title'>Apellido: </h3><p>{daily.apellido}</p>
+                        <h3 className='title'>Correo:</h3><span>{daily.correo}</span>
+                        <button className='delete' onClick={()=>handleDelete(daily.id)}>Delete</button>
+                        <button className='update'><Link to ={`/update/${daily.id}`}>Update</Link></button>
                     </div>
                 ))}
             </div>
-            <button><Link to ="/add">Add new book</Link></button>
+            <p></p>
+            <button className='formButton'><Link to ="/add">Add new daily</Link></button>
         </div>
     )
 }
 
-export default Books
+export default Dailyuser

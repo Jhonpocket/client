@@ -3,17 +3,17 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Add = () => {
-    const [book, setBook] = useState({
-        title: "",
-        desc: "",
-        price: null,
-        cover: "",
+    const [daily, setData] = useState({
+        nombre: "",
+        apellido: "",
+        correo: "",
+        contrasena: "",
     })
 
     const navigate = useNavigate()
 
     const handleChange = (e) => {
-        setBook((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+        setData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
     /* buttton conexion */
@@ -21,46 +21,47 @@ const Add = () => {
     const handleClick = async e => {
         e.preventDefault()
         try {
-            await axios.post("http://localhost:8800/books", book)
+            await axios.post("http://localhost:8800/daily", daily)
             navigate("/")
         } catch (err) {
             console.log(err)
         }
     }
 
-    console.log(book)
+    console.log(daily)
     return (
         <div className='form'>
-            <h1>Add New Book</h1>
+            <h1 className='title'>Registro</h1>
             <input 
             type="text" 
-            placeholder='correo' 
-            onChange={handleChange} 
-            name="title" 
-            />
-            <input 
-            type="text" 
-            placeholder='contraseña' 
-            onChange={handleChange} 
-            name="desc" 
-            />
-            <input 
-            type="number" 
             placeholder='nombre' 
             onChange={handleChange} 
-            name="price" 
+            name="nombre" 
             />
             <input 
             type="text" 
             placeholder='apellido' 
             onChange={handleChange} 
-            name="cover" 
+            name="apellido" 
+            />
+            <input 
+            type="email" 
+            placeholder='correo' 
+            onChange={handleChange} 
+            name="correo" 
+            />
+            <input 
+            type="password" 
+            placeholder='contraseña' 
+            onChange={handleChange} 
+            name="contrasena" 
             />
 
-            <button className='formButton' onClick={handleClick}>Add</button>
+            <button className='formButton' onClick={handleClick}>Registrarse</button>
 
         </div>
     )
 }
+
 
 export default Add

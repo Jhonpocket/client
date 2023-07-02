@@ -6,6 +6,8 @@ import {
 import Books from "./pages/Books";
 import Add from "./pages/Add";
 import Update from "./pages/Update";
+import Login from "./pages/Login";
+
 import "./style.css"
 
 function App() {
@@ -16,6 +18,7 @@ function App() {
           <Route path="/" element={<Books/>}/>
           <Route path="/add" element={<Add/>}/>
           <Route path="/update/:id" element={<Update/>}/>
+          <Route path="/login" element={<Login/>}/>
         </Routes>
       </BrowserRouter>     
     </div>
