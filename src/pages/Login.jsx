@@ -1,57 +1,49 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-//import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import '../style.css'
 
 const Add = () => {
+
+
     const [daily, setData] = useState({
         correo: "",
         contrasena: "",
     })
 
-    //const navigate = useNavigate()
-
-    /*const handleChange = (e) => {
-        setData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-    }*/
-
-
+    const navigate = useNavigate()
 
     /* buttton conexion */
 
     const handleClick = async e => {
         e.preventDefault()
-        axios
-            .post("http://localhost:8800/daily", {
+        axios.post("http://localhost:8800/daily", {
+                action: 'login',
                 correo: daily.correo,
                 contrasena: daily.contrasena
-
             })
-            .then(res => localStorage.setItem("token", res.data.token))
-            .catch(err => console.error(err))
-
-        /*try {
-            await axios.post("http://localhost:8800/daily", daily)
-            n
-        } catch (err) {
-            console.log(err)
-        }*/
+        .then(res => {
+            if(res.data === "Login Successfully") {
+                navigate("/home");
+            } else {
+                alert("Informacion incorrecta, por favor valide sus datos.");
+            }
+        })
+        .catch(err => console.log(err))
     }
 
-    //console.log(daily)
     return (
         <div className='form' onSubmit={handleClick}>
-            <h1 className='title'>Login</h1>
+            <h1 className='title'>Login <span className='subtitle'>DailyApp</span></h1>
             <input 
             type="email" 
-            placeholder='correo' 
-            //onChange={handleChange}
+            placeholder='correo'
             name="correo"
             onChange={(e)=>setData({...daily,correo:e.target.value})}
             />
             <input 
             type="password" 
             placeholder='contraseña' 
-            //onChange={handleChange}
             name="contrasena"
             onChange={(e)=>setData({...daily,contrasena:e.target.value})}
             />
